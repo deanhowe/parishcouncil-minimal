@@ -1,0 +1,69 @@
+---
+layout: archive
+---
+
+{{ content }}
+
+
+
+
+{% assign collection = site.planning_applications | sort: 'order' %}
+ {% unless collection.output == false or collection.label == "posts" %}
+
+ {% for planning_application in collection %}
+<div>
+
+   <strong style="text-decoration:underline;">{{ planning_application.title }}</strong>{% if planning_application.location %} - {{ planning_application.location }}{% endif %}<br>
+
+   {{ planning_application.content }}
+   {{ site.name }} : <a href="{{ planning_application.autority_link }}">{{ planning_application.autority_link }}</a>
+  <small>({{ planning_application.tags | array_to_sentence_string }})</small><br>
+</div>
+<hr>
+ {% endfor %}
+ {% endunless %}
+
+
+
+
+
+
+
+{% assign categories_max = 0 %}
+{% for category in site.categories %}
+  {% if category[1].size > categories_max %}
+    {% assign categories_max = category[1].size %}
+  {% endif %}
+{% endfor %}
+
+<ul class="taxonomy__index">
+  {% for i in (1..categories_max) reversed %}
+    {% for category in site.categories %}
+      {% if category[1].size == i %}
+        <li>
+          <a href="#{{ category[0] | slugify }}">
+            <strong>{{ category[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</ul>
+
+
+{% capture written_label %}'None'{% endcapture %}
+
+{% assign collection = site.planning_applications %}
+  {% unless collection.output == false or collection.label == "posts" %}
+    {% capture label %}{{ collection.label }}{% endcapture %}
+    {% if label != written_label %}
+      <h2 id="{{ label | slugify }}" class="archive__subtitle">{{ label }}</h2>
+      {% capture written_label %}{{ label }}{% endcapture %}
+    {% endif %}
+  {% endunless %}
+  {% for post in site.planning_applications %}
+    {% unless collection.output == false or collection.label == "posts" %}
+
+    {% endunless %}
+  {% endfor %}
+

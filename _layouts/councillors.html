@@ -1,0 +1,21 @@
+---
+layout: archive
+---
+
+{{ content }}
+
+
+{% assign collection = site.parish_councillors | sort: 'order' %}
+ {% unless collection.output == false or collection.label == "posts" %}
+
+ {% for councillor in collection %}
+<div>
+   <strong style="text-decoration:underline;">{{ councillor.name }}</strong>{% if councillor.position %} - {{ councillor.position }}{% endif %}<br>
+   <small>({{ councillor.committees | array_to_sentence_string }})</small><br>
+   {{ councillor.content }}
+   Email : <a href="mailto:{{ councillor.email }}" {{ councillor.email }}>{{ councillor.email }}</a>
+
+</div>
+<hr>
+ {% endfor %}
+ {% endunless %}

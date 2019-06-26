@@ -1,0 +1,37 @@
+---
+layout: archive
+---
+
+In this section you can view past Agendas and Minutes (from January 2013 onwards), and view dates and agendas for upcoming meetings. Click here to access Minutes and Agendas before January 2013.
+
+The next meeting is:
+
+{% assign collection = site.meetings  %}
+  {% unless collection.output == false or collection.label == "posts" %}
+
+{{ collection.label }}
+
+<pre>{{ collection[1].collection | jsonify }}</pre>
+
+    {% for meeting in collection reversed %}
+
+<div>
+
+    <h2><a href="{{ meeting.url }}">{{ meeting.title }}</a></h2>
+
+    {{ meeting.date | date_to_string: "ordinal", "UK" }}<br>
+
+    {{ meeting.date }}<br>
+
+    {% if meeting.agenda %}<a href="{{ meeting.agenda }}"><strong style="text-decoration:underline;">agenda</strong></a>
+    <br>
+    <small>({{ meeting.tags | array_to_sentence_string }})</small><br>
+    {{ meeting.content }}
+{% endif %}
+
+</div>
+<hr>
+  {% endfor %}
+
+
+  {% endunless %}
