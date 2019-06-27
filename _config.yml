@@ -210,6 +210,20 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
+# Collections
+collections:
+  parish_councillors:
+    output: true
+    permalink: /:collection/:path/
+  planning_applications:
+    output: true
+    permalink: /:collection/:path/
+  meetings:
+    output: true
+    permalink: /:collection/:path/
+  directory:
+    output: true
+    permalink: /:collection/:path/
 
 # Sass/SCSS
 sass:
@@ -219,8 +233,8 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
-paginate_path: /page:num/
+paginate: 12 # amount of posts to show
+paginate_path: /local-news/page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
@@ -293,3 +307,35 @@ defaults:
       comments: # true
       share: true
       related: true
+  # _parish_councillors
+  - scope:
+      path: ""
+      type: parish_councillors
+    values:
+      layout: single
+      author_profile: false
+      share: true
+  # _meetings
+  - scope:
+      path: ""
+      type: meetings
+    values:
+      layout: single
+      author_profile: false
+      share: true
+  # _planning_applications
+  - scope:
+      path: ""
+      type: planning_applications
+    values:
+      layout: single
+      author_profile: false
+      share: true
+  # _directory
+  - scope:
+      path: ""
+      type: directory
+    values:
+      layout: single
+      author_profile: false
+      share: false
