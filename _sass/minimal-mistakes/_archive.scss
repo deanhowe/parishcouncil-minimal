@@ -5,6 +5,7 @@
 .archive {
   margin-top: 1em;
   margin-bottom: 2em;
+  border: 1px solid red;
 
   @include breakpoint($large) {
     float: right;
@@ -436,3 +437,26 @@
     }
   }
 }
+
+
+
+
+.planning-application.archive {
+  margin-top: 1em;
+  margin-bottom: 2em;
+
+  @include breakpoint($large) {
+    float: left;
+    width: 100%; //calc(100% - #{$right-sidebar-width-narrow});
+    padding-right: 0;//$right-sidebar-width-narrow;
+  }
+
+  @include breakpoint($x-large) {
+    width: 100%; //calc(100% - #{$right-sidebar-width});
+    padding-right: 0;//$right-sidebar-width;
+  }
+}
+
+
+
+
